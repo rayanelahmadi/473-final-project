@@ -16,7 +16,9 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         # Save to file
         with open("parsed_command.json", "w") as f:
             json.dump(command_data, f)
-        response = f"✅ Parsed command:\n{command_data}"
+        #response = f"✅ Parsed command:\n{command_data}"
+        response = f"Got it! Will let you know once trade is executed."
+
     except Exception as e:
         response = f"❌ Failed to parse command: {e}"
 

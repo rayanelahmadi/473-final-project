@@ -18,7 +18,8 @@ post_buffers = defaultdict(lambda: deque())
 crypto_subreddits = [
     "CryptoCurrency",
     "CryptoMarkets",
-    "CryptoMoonShots"
+    "CryptoMoonShots",
+    "XRP"
 ]
 
 seen_post_ids = set()
