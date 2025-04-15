@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XRP Sentiment Trade Tracker</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #f1f1f1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #2d2d2d;
+            box-shadow: 0 0 10px rgba(0,0,0,0.6);
+        }
+        h1, h2 {
+            color: #60dbfc;
+        }
+        a {
+            color: #9cf;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .reddit-post {
+            margin-bottom: 10px;
+        }
+        .gas-price {
+            font-weight: bold;
+            color: #ffd479;
+        }
+        .executed {
+            color: #81f781;
+        }
+        .highlight {
+            color: #ff6363;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📊 XRP Trading Bot</h1>
+
+    <div class="section">
+        <h2>🔍 Trade Conditions</h2>
+        <ul>
+            <li>📈 Reddit post count for XRP must be <strong>≥ 5 <br> within an x-minute window</strong></li>
+            <li>⛽ Gas price must be <strong>&lt; 1 gwei</strong></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🧵 Reddit Posts Titles Triggered</h2>
+        <div class="reddit-post">1. XRP's Massive Potential in Multi-Trillion-Dollar Ecosystem</div>
+        <div class="reddit-post">2. Does owning 3,000+ XRP coins put you in the top 10%?</div>
+        <div class="reddit-post">3. I 3D Printed This XRP Coin</div>
+        <div class="reddit-post">4. XRP ETF...</div>
+        <div class="reddit-post">5. XRP is about to make a move very soon!</div>
+        <div class="reddit-post">Post count for XRP: <span class="highlight">5</span></div>
+    </div>
+
+    <div class="section">
+        <h2>⛽ Gas Price</h2>
+        <div class="gas-price">Current Gas: 0.620175855 GWEI</div>
+    </div>
+
+    <div class="section">
+        <h2>✅ Execution</h2>
+        <div class="executed">Conditions met! Executing <strong>'buy'</strong> on XRP...</div>
+        <p>💸 <a href="https://sepolia.etherscan.io/tx/0x59d459852e14a3504339f7c13c0de2f60ae74243f2c0d687d049aec6cc230325" target="_blank">
+            View Transaction on Etherscan</a></p>
+    </div>
+
+    <div class="section">
+        <h2>🔎 Transaction Details</h2>
+        <ul>
+            <li><strong>Status:</strong> ✅ Success</li>
+            <li><strong>Block:</strong> 8095010 <span style="color: #aaa;">(287 confirmations)</span></li>
+            <li><strong>Timestamp:</strong> Apr 11, 2025 04:15:48 UTC</li>
+            <li><strong>Hash:</strong> <code>0x59d459...230325</code></li>
+            <li><strong>From:</strong> <code>0xCA8cb...30827</code></li>
+            <li><strong>To:</strong> <code>0xCA8cb...30827</code></li>
+            <li><strong>Value:</strong> 0.001 ETH</li>
+            <li><a href="https://sepolia.etherscan.io/tx/0x59d459852e14a3504339f7c13c0de2f60ae74243f2c0d687d049aec6cc230325" target="_blank">
+                🔗 View Full Transaction on Etherscan</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
