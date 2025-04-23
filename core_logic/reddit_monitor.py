@@ -24,7 +24,7 @@ crypto_subreddits = [
 
 seen_post_ids = set()
 
-def update_post_history(token: str):
+def update_post_history(token: str, window_sec: int = 1800):
     token = token.lower()
     now = time.time()
 
@@ -35,8 +35,14 @@ def update_post_history(token: str):
                     continue
                 seen_post_ids.add(post.id)
                 #print(post.title.lower())
-                if token in post.title.lower():
-                    post_buffers[token].append(now)
+
+                # Use the post's actual creation time
+                created_at = post.created_utc
+
+                if token in post.title.lower() and (now - created_at <= window_sec):
+                    #post_buffers[token].append(now)
+                    post_buffers[token].append(created_at)
+
                     print(f"📬 Reddit post in r/{sub}: {post.title[:80]}...")
         except Exception as e:
             print(f"❌ Error checking r/{sub}: {e}")

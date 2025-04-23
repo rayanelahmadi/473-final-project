@@ -39,6 +39,7 @@ def check_conditions(user_command):
 
     #update_tweet_history()
     token = user_command['token']
+    #amount = user_command['amount']
     update_post_history(token)
 
     #tweet_count = get_tweet_count(watch_token)
@@ -50,7 +51,7 @@ def check_conditions(user_command):
     print(f"⛽ Current gas: {gas_price} gwei")
 
     #trending_ok = tweet_count > 10 if user_command["conditions"].get("twitter_trending") else True
-    trending_ok = post_count > 5 if user_command["conditions"].get("twitter_trending") else True
+    trending_ok = post_count >= 5 if user_command["conditions"].get("twitter_trending") else True
     #print("ACTUAL:", gas_price)
     #print("THRESHOLD:", user_command["conditions"].get("gas_price_threshold", 1000))
 
@@ -71,7 +72,7 @@ def main_loop():
             add_token_to_watchlist(watch_token)
             if check_conditions(user_command): # check_conditions() is true
                 print(f"🎯 Conditions met! Would execute '{user_command['action']}' on {user_command['token']} now.")
-                execute_trade(token_symbol=user_command['token'], eth_amount=0.001)
+                execute_trade(token_symbol=user_command['token'], amount=user_command['amount'])
                 
 
             else:

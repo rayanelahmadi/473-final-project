@@ -19,6 +19,7 @@ The user will send natural language commands for DeFi trading, like:
 Your job is to return a JSON object with the following fields:
 - action: "buy" or "sell"
 - token: string (ex: "PEPE")
+- amount: number (default of 0.001 if not mentioned by user)
 - conditions:
     - twitter_trending: true if mentioned
     - gas_price_threshold: number (optional)
