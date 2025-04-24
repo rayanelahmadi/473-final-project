@@ -15,7 +15,7 @@ import json
     "action": "buy",
     "token": "PEPE",
     "conditions": {
-        "twitter_trending": True,
+        "reddit_trending": True,
         "gas_price_threshold": 30
     }
 }"""
@@ -47,8 +47,8 @@ def check_conditions(user_command):
     gas_price = get_current_gas_price()
 
     #print(f"📈 Tweet count for {watch_token}: {tweet_count}")
-    print(f"📈 Reddit post count for {token}: {post_count}")
-    print(f"⛽ Current gas: {gas_price} gwei")
+    print(f"Reddit post count for {token}: {post_count}")
+    print(f"Current gas: {gas_price} gwei")
 
     #trending_ok = tweet_count > 10 if user_command["conditions"].get("twitter_trending") else True
     trending_ok = post_count >= 1 if user_command["conditions"].get("twitter_trending") else True
@@ -71,15 +71,16 @@ def main_loop():
             watch_token = f"${user_command['token'].upper()}"
             add_token_to_watchlist(watch_token)
             if check_conditions(user_command): # check_conditions() is true
-                print(f"🎯 Conditions met! Would execute '{user_command['action']}' on {user_command['token']} now.")
+                print(f"Conditions met! Would execute '{user_command['action']}' on {user_command['token']} now.")
                 execute_trade(token_symbol=user_command['token'], amount=user_command['amount'])
+                break
                 
 
             else:
-                print("⏳ Conditions not met yet.")
+                print("Conditions not met yet.")
             time.sleep(10)  # Run every minute
         else:
-            print("⏳ Waiting for user command...")
+            print("Waiting for user command...")
 
         time.sleep(10)
 

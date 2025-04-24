@@ -21,7 +21,7 @@ Your job is to return a JSON object with the following fields:
 - token: string (ex: "PEPE")
 - amount: number (default of 0.001 if not mentioned by user)
 - conditions:
-    - twitter_trending: true if mentioned
+    - reddit_trending: true if mentioned
     - gas_price_threshold: number (optional)
 Only include fields that are clearly stated.
 Respond only with a valid JSON object.
