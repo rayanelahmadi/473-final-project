@@ -3,6 +3,9 @@ import os
 import time
 from dotenv import load_dotenv
 from collections import defaultdict, deque
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+analyzer = SentimentIntensityAnalyzer()
 
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
@@ -19,12 +22,18 @@ crypto_subreddits = [
     "CryptoCurrency",
     "CryptoMarkets",
     "CryptoMoonShots",
-    "XRP"
+    "XRP",
+    "Crypto_General",         
+    "AltcoinDiscussion",      
+    "CryptoMoonShotsDaily",   
+    "Ripple",
+    "defi",
+    "CryptoTechnology"
 ]
 
 seen_post_ids = set()
 
-def update_post_history(token: str, window_sec: int = 1800):
+def update_post_history(token: str, window_sec: int = 86400):
     token = token.lower()
     now = time.time()
 
@@ -38,16 +47,26 @@ def update_post_history(token: str, window_sec: int = 1800):
 
                 # Use the post's actual creation time
                 created_at = post.created_utc
+                text = post.title + " " + (post.selftext or "")
+                #print('YOOOO', text)
 
                 if token in post.title.lower() and (now - created_at <= window_sec):
+                    sentiment = analyzer.polarity_scores(text)
+                    compound = sentiment['compound']
                     #post_buffers[token].append(now)
-                    post_buffers[token].append(created_at)
+                    #post_buffers[token].append(created_at)
 
-                    print(f"📬 Reddit post in r/{sub}: {post.title[:80]}...")
+                    if compound > 0.2:
+                        post_buffers[token].append(created_at)
+                        print(f"✅ Positive post in r/{sub}: {post.title[:80]}... ({compound})")
+                    else:
+                        print(f"⚠️ Skipped (not positive): {post.title[:80]}... ({compound})")
+
+                    #print(f"📬 Reddit post in r/{sub}: {post.title[:80]}...")
         except Exception as e:
             print(f"❌ Error checking r/{sub}: {e}")
 
-def get_post_count(token: str, window_sec: int = 1800):
+def get_post_count(token: str, window_sec: int = 86400):
     now = time.time()
     buffer = post_buffers[token.lower()]
     while buffer and now - buffer[0] > window_sec:

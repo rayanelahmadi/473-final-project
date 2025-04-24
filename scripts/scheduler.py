@@ -51,7 +51,7 @@ def check_conditions(user_command):
     print(f"⛽ Current gas: {gas_price} gwei")
 
     #trending_ok = tweet_count > 10 if user_command["conditions"].get("twitter_trending") else True
-    trending_ok = post_count >= 5 if user_command["conditions"].get("twitter_trending") else True
+    trending_ok = post_count >= 1 if user_command["conditions"].get("twitter_trending") else True
     #print("ACTUAL:", gas_price)
     #print("THRESHOLD:", user_command["conditions"].get("gas_price_threshold", 1000))
 
