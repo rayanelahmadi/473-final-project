@@ -16,7 +16,7 @@ contract WETH9 {
 
     receive() external payable {
         deposit();
-    }
+    } 
 
     function deposit() public payable {
         balanceOf[msg.sender] += msg.value;

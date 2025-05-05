@@ -43,28 +43,23 @@ def update_post_history(token: str, window_sec: int = 86400):
                 if post.id in seen_post_ids:
                     continue
                 seen_post_ids.add(post.id)
-                #print(post.title.lower())
 
                 # Use the post's actual creation time
                 created_at = post.created_utc
                 text = post.title + " " + (post.selftext or "")
-                #print('YOOOO', text)
 
                 if token in post.title.lower() and (now - created_at <= window_sec):
                     sentiment = analyzer.polarity_scores(text)
                     compound = sentiment['compound']
-                    #post_buffers[token].append(now)
-                    #post_buffers[token].append(created_at)
-
+                    
                     if compound > 0.2:
                         post_buffers[token].append(created_at)
-                        print(f"✅ Positive post in r/{sub}: {post.title[:80]}... ({compound})")
+                        print(f"Positive post in r/{sub}: {post.title[:80]}... ({compound})")
                     else:
-                        print(f"⚠️ Skipped (not positive): {post.title[:80]}... ({compound})")
+                        print(f"Skipped (not positive): {post.title[:80]}... ({compound})")
 
-                    #print(f"📬 Reddit post in r/{sub}: {post.title[:80]}...")
         except Exception as e:
-            print(f"❌ Error checking r/{sub}: {e}")
+            print(f"Error checking r/{sub}: {e}")
 
 def get_post_count(token: str, window_sec: int = 86400):
     now = time.time()

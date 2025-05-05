@@ -7,7 +7,6 @@ import json
 # Load .env from project root
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
-#openai.api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
@@ -38,15 +37,15 @@ async def parse_command(user_input: str) -> dict:
             temperature=0.2
         )
         content = response.choices[0].message.content
-        print("🔍 GPT Raw Response:")
+        print("GPT Raw Response:")
         print(content)
 
-         # Remove markdown code block if present
+        # Remove markdown code block if present
         if content.startswith("```json"):
             content = content.replace("```json", "").strip()
         if content.endswith("```"):
             content = content[:-3].strip()
 
-        return json.loads(content)  # Safer than eval()
+        return json.loads(content)  
     except Exception as e:
         raise RuntimeError(f"GPT parsing failed: {e}")

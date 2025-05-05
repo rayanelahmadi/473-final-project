@@ -1,1 +1,1 @@
-{"action": "buy", "token": "XRP", "amount": 10, "conditions": {"reddit_trending": true, "gas_price_threshold": 10}}
+{"action": "buy", "token": "XRP", "amount": 2, "conditions": {"reddit_trending": true, "gas_price_threshold": 30}}

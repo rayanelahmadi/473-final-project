@@ -18,8 +18,8 @@ def get_current_gas_price() -> int:
         response = requests.get(url, params=params)
         data = response.json()
 
-        # Get "ProposeGasPrice" in gwei as int
         return float(data["result"]["ProposeGasPrice"])
+    
     except Exception as e:
-        print(f"❌ Failed to fetch gas price: {e}")
+        print(f"Failed to fetch gas price: {e}")
         return -1  # use -1 as error fallback
